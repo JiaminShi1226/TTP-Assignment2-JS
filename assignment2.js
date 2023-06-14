@@ -153,12 +153,19 @@ function grabValues(obj) {
 console.log(grabValues(car));
 
 //Misc problem 1
-function sumOfRange(start, end) {
-  let sum = 0;
+function range(start, end) {
+  let arr = [];
   for (let i = start; i <= end; i++) {
-    sum += this[i];
+    arr.push(i);
   }
-  return sum;
+  return arr;
+}
+function Sum(arr) {
+  let num = 0;
+  for (let i = 0; i < arr.length; i++) {
+    num += arr[i];
+  }
+  return num;
 }
 
 //Misc problem 2
@@ -181,27 +188,33 @@ function reverseArrayInPlace(arr) {
 }
 
 //Misc problem 3
-function arrayToList() {
-  let list = {
-    value: this[0],
-    rest: {},
-  };
-  let ptr = list;
-
-  for (let i = 1; i < this.length; i++) {
-    let next = {
-      value: this[i],
-      rest: {},
-    };
-    ptr.rest = next;
-    ptr = next;
+function arrayToList(array) {
+  var list = null;
+  for (i = array.length - 1; i >= 0; i--) {
+    list = { value: array[i], rest: list };
   }
-
   return list;
 }
 
+function listToArray(list) {
+  var array = [];
+  for (var node = list; node; node = node.rest) {
+    array.push(node.value);
+  }
+  return array;
+}
+
+function prepend(value, rest) {
+  return { value: value, rest: rest };
+}
+
+function nth(list, position) {
+  if (position === 0) return list.value;
+  else return nth(list.rest, position - 1);
+}
+
 //Misc problem 4
-function deepComparison(obj) {
+function deepEqual(obj) {
   if (typeof obj === "object" && obj != null) {
     keys1 = this.grabKeys();
     keys2 = obj.grabKeys();
