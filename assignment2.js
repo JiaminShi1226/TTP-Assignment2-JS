@@ -163,11 +163,21 @@ function sumOfRange(start, end) {
 
 //Misc problem 2
 function reverseArray(arr) {
-  let result = [];
+  let temp = [];
   for (let i = arr.length - 1; i >= 0; i--) {
-    result.push(arr[i]);
+    temp.push(arr[i]);
   }
-  return result;
+  return temp;
+}
+function reverseArrayInPlace(arr) {
+  let temp;
+  let j = arr.length - 1;
+  for (let i = 0; i < j; i++) {
+    temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
+    j--;
+  }
 }
 
 //Misc problem 3
