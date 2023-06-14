@@ -45,12 +45,14 @@ console.log(doubledNumbers);
 function myFilter(arr, callback) {
   const result = [];
   for (let i = 0; i < arr.length; i++) {
-    return callback(arr[i]);
+    if (arr[i] % 2 === 0) {
+      result.push(callback(arr[i]));
+    }
   }
   return result;
 }
 let evenNumbers = myFilter(numbers, (ele) => {
-  if (ele % 2 === 0) return ele;
+  return ele;
 });
 console.log(evenNumbers);
 
@@ -79,20 +81,14 @@ let allNumbersEven = myEvery(numbers1, (ele) => {
 console.log(allNumbersEven);
 
 //6. myReduce()
-function myReduce(arr, callback) {
-  let index = 0;
-  let acc;
-  for (let i = 0; i < arr.length; i++) {
-    if (index < arr[i]) {
-      index = arr[i];
-      acc = callback(index);
-    }
-    return acc;
+function myReduce(arr, callback, init) {
+  let acc = init;
+  for (const ele of arr) {
+    acc = callback(acc, ele);
   }
+  return acc;
 }
-let sum = myReduce(numbers, (acc, num) => {
-  return acc + num;
-});
+let sum = myReduce(numbers, (acc, cur) => acc + cur, 0);
 console.log(sum);
 
 //7. myIncludes()
